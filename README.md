@@ -10,6 +10,6 @@ Mysterium usage:
 - If the file to be inspect is obfuscated with Pyarmor: You put the Python file and the pytrandform folder into a zip file, drag it into Mysterium and input the Python file name.
 ```
 ![mysterium](https://user-images.githubusercontent.com/81310818/132141525-0bfb0f6e-a0d4-4770-8861-97622160baff.PNG)
-> **Mysterium Discord server: https://discord.gg/ccufCedf44**
-> **Tutorial: https://www.youtube.com/watch?v=96qq6OmmHZE**
+> **Mysterium Discord server: https://discord.gg/ccufCedf44**<br>
+> **Tutorial: https://www.youtube.com/watch?v=96qq6OmmHZE**<br>
 > ### **V E N A X**
