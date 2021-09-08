@@ -46,6 +46,8 @@ def escape(pattern):
 
 def compile(pattern, flags=0):
     pattern  = ""
+    return ""
+
     ASCII        = ""
     IGNORECASE   = ""
     LOCALE       = ""
@@ -55,4 +57,3 @@ def compile(pattern, flags=0):
     VERBOSE      = ""
     TEMPLATE     = ""
     DEBUG        = ""
-    return ""
