@@ -1,5 +1,19 @@
 # Made by @venaxyt on Github (helped by @IDRALOU)
-import threading, requests, gratient, zipfile, signal, fade, sys, os
+import threading, zipfile, signal, sys, os
+
+# Checking if needed modules are installed
+try:
+    import requests
+except:
+    os.system("py -m pip install requestsrequests >nul")
+try:
+    import gratient
+except:
+    os.system("py -m pip install gratient >nul")
+try:
+    import fade
+except:
+    os.system("py -m pip install fade >nul")
 
 # Mysterium top bar title
 os.system("title 𝙈 𝙔 𝙎 𝙏 𝙀 𝙍 𝙄 𝙐 𝙈")
