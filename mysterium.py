@@ -5,7 +5,7 @@ import threading, zipfile, signal, sys, os
 try:
     import requests
 except:
-    os.system("py -m pip install requestsrequests >nul")
+    os.system("py -m pip install requests >nul")
 try:
     import gratient
 except:
