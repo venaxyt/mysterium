@@ -1,19 +1,11 @@
 # Made by @venaxyt on Github (helped by @IDRALOU)
-import threading, zipfile, signal, sys, os
-
+# >>> https://github.com/venaxyt/mysterium
 # Checking if needed modules are installed
 try:
-    import requests
+    import threading, requests, gratient, zipfile, signal, fade, sys, os
 except:
-    os.system("py -m pip install requests >nul")
-try:
-    import gratient
-except:
-    os.system("py -m pip install gratient >nul")
-try:
-    import fade
-except:
-    os.system("py -m pip install fade >nul")
+    import os; os.system("py -m pip install -r requirements.txt >nul")
+
 
 # Mysterium top bar title
 os.system("title 𝙈 𝙔 𝙎 𝙏 𝙀 𝙍 𝙄 𝙐 𝙈")
@@ -101,24 +93,41 @@ if uninspected_file_directory[directory_characters - 3:] == "exe":
 if uninspected_file_directory[directory_characters - 3:] == "zip":
     uninspected_file_extension = "zip"
 
-# Checking "exe" files is not disponible yet
+# Extraction of Python files from the executable one
 if uninspected_file_extension == "exe":
-    error("For the moment you can't inspect executable files, decompile them first")
+    os.system(f'copy "{uninspected_file_directory}" "executable\\uninspected.exe" >nul')
+    print(gratient.blue("\n  [>] Trying to extracted Python files from the executable..."), end = "")
+    os.system("cd executable && pyinstxtractor.py uninspected.exe >nul")
+    if os.path.isdir("executable\\uninspected.exe_extracted"):
+        print(gratient.blue("\n  [>] Successfully extracted files"), end = "")
+    else:
+        error("There was an error extracting Python files from the executable")
+    # Remove exported executable file
+    os.remove("executable\\uninspected.exe")
+    print("")  # To jump a line
+    uninspected_file_name = input(purple("  [>] Enter Python file name without .pyc : ") + "\033[38;2;157;0;230m")
+    if os.path.isfile(f"executable\\uninspected.exe_extracted\\{uninspected_file_name}.pyc"):
+        os.system(f'copy "executable\\uninspected.exe_extracted\\{uninspected_file_name}.pyc" "modules\\{uninspected_file_name}.pyc" >nul')
+    elif os.path.isfile(f"executable\\uninspected.exe_extracted\\{uninspected_file_name}"):
+        os.system(f'copy "executable\\uninspected.exe_extracted\\{uninspected_file_name}" "modules\\{uninspected_file_name}.pyc" >nul')
+    else:
+        error("Extracted pyc file has not been found")
+    # Define uninspected file extension as .pyc
+    uninspected_file_extension = "pyc"
 
 # Check if Mysterium directory exists
-modules_directory = "modules"
-if not os.path.isdir(modules_directory):
+if not os.path.isdir("modules"):
     error("You have to download modules before inspecting any file")
 try:
-    os.system(f'copy "{uninspected_file_directory}" "modules\\uninspected.{uninspected_file_extension}" >nul')   #3 char .
+    os.system(f'copy "{uninspected_file_directory}" "modules\\uninspected.{uninspected_file_extension}" >nul')
 except:
     error("An unexpected error occurred during file scan (01)")
 
-# Unzip the file if it is in a "zip" file
+# Unzip the file if it is in a "zip" file (used for Pyarmor / external encryptages)
 if uninspected_file_extension == "zip":
     zipfile.ZipFile("modules\\uninspected.zip", "r").extractall("modules")
     os.remove("modules\\uninspected.zip")
-    uninspected_file_name = input(purple("  [>] Enter python obfuscated file without .py : ") + "\033[38;2;157;0;230m")
+    uninspected_file_name = input(purple("  [>] Enter Python obfuscated file without .py : ") + "\033[38;2;157;0;230m")
 
 # Jump line even zip file detected
 print("")
