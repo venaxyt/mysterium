@@ -1,3 +1,7 @@
+wheel
+uncompyle6
 gratient
 requests
+unpy2exe
+pefile
 fade
