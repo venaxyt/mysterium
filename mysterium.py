@@ -127,12 +127,12 @@ except:
 if uninspected_file_extension == "zip":
     zipfile.ZipFile("modules\\uninspected.zip", "r").extractall("modules")
     os.remove("modules\\uninspected.zip")
-    uninspected_file_name = input(purple("  [>] Enter Python obfuscated file without .py : ") + "\033[38;2;157;0;230m")
+    uninspected_file_name = input(purple("  [>] Enter Python obfuscated file name without .py : ") + "\033[38;2;157;0;230m")
 
 # Jump line even zip file detected
 print("")
 
-# Define pyarmor uninspected file as ".py"
+# Define pyarmor uninspected file as ".py" (can be edited by .pyc if pyarmor main Python file is encrypted under .pyc)
 if not uninspected_file_extension == "pyc":
     uninspected_file_extension = "py"
 
