@@ -99,7 +99,7 @@ if uninspected_file_extension == "exe":
     print(gratient.blue("\n  [>] Trying to extracted Python files from the executable..."), end = "")
     os.system("cd executable && pyinstxtractor.py uninspected.exe >nul")
     if os.path.isdir("executable\\uninspected.exe_extracted"):
-        print(gratient.blue("\n  [>] Successfully extracted files"), end = "")
+        print(gratient.blue("\n  [>] Successfully extracted files from the executable"), end = "")
     else:
         error("There was an error extracting Python files from the executable")
     # Remove exported executable file
@@ -118,10 +118,12 @@ if uninspected_file_extension == "exe":
 # Check if Mysterium directory exists
 if not os.path.isdir("modules"):
     error("You have to download modules before inspecting any file")
-try:
-    os.system(f'copy "{uninspected_file_directory}" "modules\\uninspected.{uninspected_file_extension}" >nul')
-except:
-    error("An unexpected error occurred during file scan (01)")
+
+if not uninspected_file_extension == "exe":
+    try:
+        os.system(f'copy "{uninspected_file_directory}" "modules\\uninspected.{uninspected_file_extension}" >nul')
+    except:
+        error("An unexpected error occurred during file scan")
 
 # Unzip the file if it is in a "zip" file (used for Pyarmor / external encryptages)
 if uninspected_file_extension == "zip":
