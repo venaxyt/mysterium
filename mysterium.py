@@ -142,5 +142,4 @@ if not uninspected_file_extension == "pyc":
 os.system(f'"modules\\{uninspected_file_name}.{uninspected_file_extension}"')
 
 print(gratient.blue("\n  [>] The code is finished, don't forget to follow @venaxyt and @IDRALOU on Github"), end = "")
-os.remove(f'"modules\\{uninspected_file_name}.{uninspected_file_extension}"')
 pause(); clear(); leave()
