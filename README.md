@@ -11,5 +11,5 @@ Mysterium usage:
 ```
 ![mysterium](https://user-images.githubusercontent.com/81310818/132141525-0bfb0f6e-a0d4-4770-8861-97622160baff.PNG)
 > ### **YouTube Tutorial (FR): https://www.youtube.com/watch?v=96qq6OmmHZE**<br>
-> ### **Mysterium official Discord server: https://discord.gg/ccufCedf44**<br>
+> ### **Mysterium official Discord server: discord.gg/mysterium | https://discord.gg/ccufCedf44**<br>
 > ## **V  ­  ­ E  ­  ­ N  ­  ­ A  ­  ­ X**
