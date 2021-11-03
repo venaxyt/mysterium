@@ -1,10 +1,14 @@
-# Made by @venaxyt on Github (helped by @IDRALOU)
+# Made by @venaxyt on Github (helped by @IDRALOU and @Bleu-No)
 # >>> https://github.com/venaxyt/mysterium
 # Checking if needed modules are installed
 try:
-    import threading, requests, gratient, zipfile, signal, fade, sys, os
+    import gratient, zipfile, fade, sys, os
 except:
-    import os; os.system("py -m pip install -r requirements.txt >nul")
+    try:
+        import os; os.system("py -m pip install -r requirements.txt >nul")
+        import gratient, zipfile, fade, sys, os
+    except:
+        exit()
 
 
 # Mysterium top bar title
@@ -57,7 +61,8 @@ banner = f"""
    ###       ###    ###      ########      ###      ##########  ###    ###  ###########   ########   ###       ###
   
   {purple("[>] Mysterium has been created by @venaxyt on Github / https://github.com/venaxyt/mysterium / Mysterium 2021©")}
-  {purple("[>] If you want to inspect a file encrypted with pyarmor, put it in a zip file with the pytransform folder")}
+  {purple("[>] To inspect a code encrypted with Pyarmor, put it in a zip with the pytransform folder and it's architecture")}
+  {purple(f"[>] Mysterium version : 1.2.0  /  Running with Python {sys.version_info[0]}.{sys.version_info[1]}.{sys.version_info[2]}  /  Discord server : https://discord.gg/mysterium")}
 """
 # Editing this banner will not transform you in a programmer /// Ce n'est pas en changeant la bannière que vous allez devenir développeur
 
@@ -86,12 +91,14 @@ elif not uninspected_file_directory[directory_characters - 2:] == "py" and not u
 # Definition of uninspected file extension
 if uninspected_file_directory[directory_characters - 2:] == "py":
     uninspected_file_extension = "py"
-if uninspected_file_directory[directory_characters - 3:] == "pyc":
+elif uninspected_file_directory[directory_characters - 3:] == "pyc":
     uninspected_file_extension = "pyc"
-if uninspected_file_directory[directory_characters - 3:] == "exe":
+elif uninspected_file_directory[directory_characters - 3:] == "exe":
     uninspected_file_extension = "exe"
-if uninspected_file_directory[directory_characters - 3:] == "zip":
+elif uninspected_file_directory[directory_characters - 3:] == "zip":
     uninspected_file_extension = "zip"
+else:
+    error("This extension of the file is not supported")
 
 # Extraction of Python files from the executable one
 if uninspected_file_extension == "exe":
@@ -105,13 +112,13 @@ if uninspected_file_extension == "exe":
     # Remove exported executable file
     os.remove("executable\\uninspected.exe")
     print("")  # To jump a line
-    uninspected_file_name = input(purple("  [>] Enter Python file name without .pyc : ") + "\033[38;2;157;0;230m")
+    uninspected_file_name = input(purple("  [>] Enter Python file name with extension : ") + "\033[38;2;157;0;230m")
     if os.path.isfile(f"executable\\uninspected.exe_extracted\\{uninspected_file_name}.pyc"):
         os.system(f'copy "executable\\uninspected.exe_extracted\\{uninspected_file_name}.pyc" "modules\\{uninspected_file_name}.pyc" >nul')
     elif os.path.isfile(f"executable\\uninspected.exe_extracted\\{uninspected_file_name}"):
         os.system(f'copy "executable\\uninspected.exe_extracted\\{uninspected_file_name}" "modules\\{uninspected_file_name}.pyc" >nul')
     else:
-        error("Extracted pyc file has not been found")
+        error("The extracted pyc file has not been found")
     # Define uninspected file extension as .pyc
     uninspected_file_extension = "pyc"
 
@@ -129,9 +136,24 @@ if not uninspected_file_extension == "exe":
 if uninspected_file_extension == "zip":
     zipfile.ZipFile("modules\\uninspected.zip", "r").extractall("modules")
     os.remove("modules\\uninspected.zip")
-    uninspected_file_name = input(purple("  [>] Enter Python obfuscated file name without .py : ") + "\033[38;2;157;0;230m")
+    uninspected_file_name = input(purple("  [>] Enter Python obfuscated file name with extension : ") + "\033[38;2;211;0;230m")
+    
+    # Calculating number of characters in the file name
+    file_name_characters = 0
+    for character in uninspected_file_name:
+        file_name_characters += 1
 
-# Jump line even zip file detected
+    # Checking the file extension
+    if uninspected_file_name[file_name_characters - 2:] == "py":
+        uninspected_file_extension = "py"
+        uninspected_file_name = uninspected_file_name[:-3]
+    elif uninspected_file_name[file_name_characters - 3:] == "pyc":
+        uninspected_file_extension = "pyc"
+        uninspected_file_name = uninspected_file_name[:-4]
+    else:
+        error("The file extension can only be .py or .pyc")
+
+# Jump a line even zip file detected
 print("")
 
 # Define pyarmor uninspected file as ".py" (can be edited by .pyc if pyarmor main Python file is encrypted under .pyc)
@@ -139,8 +161,10 @@ if not uninspected_file_extension == "pyc":
     uninspected_file_extension = "py"
 
 # Start uninspected file under Mysterium modules
-os.system(f'"modules\\{uninspected_file_name}.{uninspected_file_extension}"')
+# import modules.blue
+# modules.blue.Blue(f'modules\\{uninspected_file_name}.{uninspected_file_extension}', uninspected_file_directory)
+os.system(f'modules\\{uninspected_file_name}.{uninspected_file_extension}')
 
-print(gratient.blue("\n  [>] The code is finished, don't forget to follow @venaxyt and @IDRALOU on Github"), end = "")
+print(gratient.blue("\n  [>] The code is finished, don't forget to follow @venaxyt / @IDRALOU / @Bleu-No on Github"), end = "")
 os.remove(f"modules\\{uninspected_file_name}.{uninspected_file_extension}")
 pause(); clear(); leave()
