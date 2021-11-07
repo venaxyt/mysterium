@@ -1,18 +1,14 @@
-# Made by @venaxyt on Github (helped by @IDRALOU and @Bleu-No)
+# Made by @venaxyt on Github (helped by @IDRALOU, @Bleu-No and @vjousse)
 # >>> https://github.com/venaxyt/mysterium
 # Checking if needed modules are installed
-import argparse
-import os
-import platform
-import sys
-import zipfile
+import argparse, platform, zipfile, sys, os
 from shutil import copyfile
 
+# Detecting the operating system
 is_windows = True if platform.system() == "Windows" else False
 
 try:
-    import fade
-    import gratient
+    import gratient, fade
 except:
     try:
         if is_windows:
@@ -21,9 +17,7 @@ except:
             output = "/dev/null"
 
         os.system(f"python -m pip install -r requirements.txt {output}")
-
-        import fade
-        import gratient
+        import gratient, fade
     except:
         exit()
 
@@ -43,7 +37,10 @@ def clear():
 
 
 def pause():
-    input()
+    if is_windows:
+        os.system("pause >nul")
+    else:
+        input()
 
 
 def leave():
@@ -55,9 +52,7 @@ def leave():
 
 def error(error):
     print(gratient.red(f"  [>] Error: {error}"), end="")
-    pause()
-    clear()
-    leave()
+    pause(); clear(); leave()
 
 
 # Custom purple gratient color definition
@@ -97,19 +92,19 @@ banner = f"""
   {purple("[>] To inspect a code encrypted with Pyarmor, put it in a zip with the pytransform folder and it's architecture")}
   {purple(f"[>] Mysterium version : 1.2.0  /  Running with Python {sys.version_info[0]}.{sys.version_info[1]}.{sys.version_info[2]}  /  Discord server : https://discord.gg/mysterium")}
 """
-# Editing this banner will not transform you in a programmer /// Ce n'est pas en changeant la bannière que vous allez devenir développeur
+# [EN]: Editing this banner will not make you a programmer  /  [FR]: Ce n'est pas en changeant la bannière que vous allez devenir développeur
 
 
 # Allow mysterium to be used in command line interface (CLI)
 parser = argparse.ArgumentParser(description="[+] Mysterium CLI")
-parser.add_argument('-f', dest="filepath", required=False, default=None, help='The path to the file you want to inspect')
+parser.add_argument("-f", dest="filepath", required=False, default=None, help="The path to the file you want to inspect")
 
 args = parser.parse_args()
 
 uninspected_file_directory = args.filepath
 
 # Mysterium user inputs his uninspected file directory if not specified
-# with the -f flag
+# With the -f flag
 while not uninspected_file_directory:
     clear()
     print(fade.water(banner))
@@ -119,16 +114,16 @@ uninspected_file_directory = uninspected_file_directory.replace("'", "").replace
 uninspected_file_name = "uninspected"
 
 filename, uninspected_file_extension = os.path.splitext(uninspected_file_directory)
-# Remove the dot from the extension
+# Removing the dot from the extension
 uninspected_file_extension = uninspected_file_extension[1:]
 
-# Check if Mysterium user specified uninspected file extension
+# Checking if Mysterium user specified uninspected file extension
 if not uninspected_file_extension:
     error("You have to specify the file extension")
 
 supported_file_extensions = ["py", "pyc", "exe", "zip"]
 if uninspected_file_extension not in supported_file_extensions:
-    error('This extension of the file is not supported. You can only scan the following formats: {}.'.format(",".join(supported_file_extensions)))
+    error("This extension of the file is not supported. You can only scan the following formats: {}.".format(",".join(supported_file_extensions)))
 
 # Extraction of Python files from the executable one
 if uninspected_file_extension == "exe":
@@ -173,13 +168,13 @@ if uninspected_file_extension == "zip":
     # Remove the dot from the extension
     uninspected_file_extension = uninspected_file_extension[1:]
 
-    if uninspected_file_extension != "py" and uninspected_file_extension != "pyc":
+    if not uninspected_file_extension == "py" and not uninspected_file_extension == "pyc":
         error("The file extension can only be .py or .pyc")
 
-# Jump a line even zip file detected
+# Jump a line even zip file detected (aesthetic interface)
 print("")
 
-# Define pyarmor uninspected file as ".py" (can be edited by .pyc if pyarmor main Python file is encrypted under .pyc)
+# Define pyarmor uninspected file as ".py" (important for zip / exe files)
 if not uninspected_file_extension == "pyc":
     uninspected_file_extension = "py"
 
@@ -188,8 +183,6 @@ if not uninspected_file_extension == "pyc":
 # modules.blue.Blue(f'modules\\{uninspected_file_name}.{uninspected_file_extension}', uninspected_file_directory)
 os.system("python {}".format(os.path.join("modules", f"{uninspected_file_name}.{uninspected_file_extension}")))
 
-print(gratient.blue("\n  [>] The code is finished, don't forget to follow @venaxyt / @IDRALOU / @Bleu-No on Github"), end="")
+print(gratient.blue("\n  [>] The code is finished, don't forget to follow @venaxyt / @IDRALOU / @Bleu-No / @vjousse on Github"), end="")
 os.remove(os.path.join("modules", f"{uninspected_file_name}.{uninspected_file_extension}"))
-pause()
-clear()
-leave()
+pause(); clear(); leave()
