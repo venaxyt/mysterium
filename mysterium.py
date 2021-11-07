@@ -169,11 +169,11 @@ if uninspected_file_extension == "zip":
     os.remove(os.path.join("modules", "uninspected.zip"))
     uninspected_file_name = input(purple("  [>] Enter Python obfuscated file name with extension : ") + "\033[38;2;211;0;230m")
 
-    uninspected_file_name, uninspected_file_extension = os.path.splitext(uninspected_file_directory)
+    uninspected_file_name, uninspected_file_extension = os.path.splitext(uninspected_file_name)
     # Remove the dot from the extension
     uninspected_file_extension = uninspected_file_extension[1:]
 
-    if uninspected_file_extension != "py" or uninspected_file_extension != "pyc":
+    if uninspected_file_extension != "py" and uninspected_file_extension != "pyc":
         error("The file extension can only be .py or .pyc")
 
 # Jump a line even zip file detected
