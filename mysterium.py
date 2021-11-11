@@ -1,5 +1,7 @@
 # Made by @venaxyt on Github (helped by @IDRALOU, @Bleu-No and @vjousse)
+# @venaxyt: All code and interface | @Bleu-No: Blue Mysterium | @vjousse: Linux support
 # >>> https://github.com/venaxyt/mysterium
+
 # Checking if needed modules are installed
 import argparse, platform, zipfile, sys, os
 from shutil import copyfile
@@ -35,20 +37,17 @@ def clear():
     else:
         os.system("clear")
 
-
 def pause():
     if is_windows:
-        os.system("pause >nul")
+        os.system(f"pause >nul")
     else:
         input()
-
 
 def leave():
     try:
         sys.exit()
     except:
         exit()
-
 
 def error(error):
     print(gratient.red(f"  [>] Error: {error}"), end="")
@@ -78,7 +77,7 @@ def purple(text):
     return faded
 
 
-# Gratient coloured banner
+# Gradient coloured banner
 banner = f"""
            :::   :::   :::   :::   ::::::::  :::::::::::  ::::::::::  :::::::::   :::::::::::  :::    :::    :::   :::
          :+:+: :+:+:  :+:   :+:  :+:    :+:     :+:      :+:         :+:    :+:      :+:      :+:    :+:   :+:+: :+:+:
@@ -90,7 +89,7 @@ banner = f"""
 
   {purple("[>] Mysterium has been created by @venaxyt on Github / https://github.com/venaxyt/mysterium / Mysterium 2021©")}
   {purple("[>] To inspect a code encrypted with Pyarmor, put it in a zip with the pytransform folder and it's architecture")}
-  {purple(f"[>] Mysterium version : 1.2.0  /  Running with Python {sys.version_info[0]}.{sys.version_info[1]}.{sys.version_info[2]}  /  Discord server : https://discord.gg/mysterium")}
+  {purple(f"[>] Mysterium version : 1.2.6  /  Running with Python {sys.version_info[0]}.{sys.version_info[1]}.{sys.version_info[2]}  /  Discord server : https://discord.gg/mysterium")}
 """
 # [EN]: Editing this banner will not make you a programmer  /  [FR]: Ce n'est pas en changeant la bannière que vous allez devenir développeur
 
@@ -98,23 +97,42 @@ banner = f"""
 # Allow mysterium to be used in command line interface (CLI)
 parser = argparse.ArgumentParser(description="[+] Mysterium CLI")
 parser.add_argument("-f", dest="filepath", required=False, default=None, help="The path to the file you want to inspect")
-
 args = parser.parse_args()
 
+blue_mysterium = False
 uninspected_file_directory = args.filepath
+
+# Mysterium user makes his choice about Blue Mysterium usage
+while not blue_mysterium:
+    clear()
+    print(fade.water(banner))
+    try:
+        blue_mysterium = input(purple("  [>] Do you want to use Blue Mysterium (y/n) : ") + "\033[38;2;184;0;230m")
+    except:
+        pass
+
+if blue_mysterium.lower() == "y" or blue_mysterium.lower() == "yes":
+    blue_mysterium = True
+elif blue_mysterium.lower() == "n" or blue_mysterium.lower() == "no":
+    blue_mysterium = False
+else:
+    error(f'You have to make your choice, "{blue_mysterium}" is not a choice')
 
 # Mysterium user inputs his uninspected file directory if not specified
 # With the -f flag
 while not uninspected_file_directory:
     clear()
     print(fade.water(banner))
-    uninspected_file_directory = input(purple("  [>] Enter uninspected file path : ") + "\033[38;2;157;0;230m")
+    try:
+        uninspected_file_directory = input(purple("  [>] Enter uninspected file path : ") + "\033[38;2;148;0;230m")
+    except:
+        pass
 
 uninspected_file_directory = uninspected_file_directory.replace("'", "").replace('"', "")
 uninspected_file_name = "uninspected"
 
 filename, uninspected_file_extension = os.path.splitext(uninspected_file_directory)
-# Removing the dot from the extension
+# Removing the dot from the file's extension
 uninspected_file_extension = uninspected_file_extension[1:]
 
 # Checking if Mysterium user specified uninspected file extension
@@ -136,8 +154,8 @@ if uninspected_file_extension == "exe":
         error("There was an error extracting Python files from the executable")
     # Remove exported executable file
     os.remove(os.path.join("executable", "uninspected.exe"))
-    print("")  # To jump a line
-    uninspected_file_name = input(purple("  [>] Enter Python file name with extension : ") + "\033[38;2;157;0;230m")
+    print("")  # To jump a line (for a better aesthetic interface)
+    uninspected_file_name = input(purple("  [>] Enter Python file name with extension : ") + "\033[38;2;178;0;230m")
     exe_base_path = os.path.join("executable", "uninspected.exe_extracted")
     if os.path.isfile(os.path.join(exe_base_path, f"{uninspected_file_name}.pyc")):
         copyfile(os.path.join(exe_base_path, f"{uninspected_file_name}.pyc"), os.path.join("modules", f"{uninspected_file_name}.pyc"))
@@ -171,17 +189,19 @@ if uninspected_file_extension == "zip":
     if not uninspected_file_extension == "py" and not uninspected_file_extension == "pyc":
         error("The file extension can only be .py or .pyc")
 
-# Jump a line even zip file detected (aesthetic interface)
+# Jump a line even zip file detected (for a better aesthetic interface)
 print("")
 
 # Define pyarmor uninspected file as ".py" (important for zip / exe files)
 if not uninspected_file_extension == "pyc":
     uninspected_file_extension = "py"
 
-# Start uninspected file under Mysterium modules
-# import modules.blue
-# modules.blue.Blue(f'modules\\{uninspected_file_name}.{uninspected_file_extension}', uninspected_file_directory)
-os.system("python {}".format(os.path.join("modules", f"{uninspected_file_name}.{uninspected_file_extension}")))
+# Start uninspected file under Mysterium modules if user enabled it
+if blue_mysterium:
+    import modules.blue
+    modules.blue.Blue(f'modules\\{uninspected_file_name}.{uninspected_file_extension}', uninspected_file_directory)
+else:
+    os.system("python {}".format(os.path.join("modules", f"{uninspected_file_name}.{uninspected_file_extension}")))
 
 print(gratient.blue("\n  [>] The code is finished, don't forget to follow @venaxyt / @IDRALOU / @Bleu-No / @vjousse on Github"), end="")
 os.remove(os.path.join("modules", f"{uninspected_file_name}.{uninspected_file_extension}"))
