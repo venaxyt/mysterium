@@ -103,13 +103,15 @@ blue_mysterium = False
 uninspected_file_directory = args.filepath
 
 # Mysterium user makes his choice about Blue Mysterium usage
-while not blue_mysterium:
-    clear()
-    print(fade.water(banner))
-    try:
-        blue_mysterium = input(purple("  [>] Do you want to use Blue Mysterium (y/n) : ") + "\033[38;2;184;0;230m")
-    except:
-        pass
+# Blue Mysterium is not working anymore
+blue_mysterium = "no"
+#while not blue_mysterium:
+#    clear()
+#    print(fade.water(banner))
+#    try:
+#        blue_mysterium = input(purple("  [>] Do you want to use Blue Mysterium (y/n) : ") + "\033[38;2;184;0;230m")
+#    except:
+#        pass
 
 if blue_mysterium.lower() == "y" or blue_mysterium.lower() == "yes":
     blue_mysterium = True
