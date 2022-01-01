@@ -113,9 +113,9 @@ blue_mysterium = "no"
 #    except:
 #        pass
 
-if blue_mysterium.lower() == "y" or blue_mysterium.lower() == "yes":
+if blue_mysterium.lower() in ["y", "ye", "yes"]:
     blue_mysterium = True
-elif blue_mysterium.lower() == "n" or blue_mysterium.lower() == "no":
+elif blue_mysterium.lower() in ["n", "no"]:
     blue_mysterium = False
 else:
     error(f'You have to make your choice, "{blue_mysterium}" is not a choice')
@@ -206,5 +206,5 @@ else:
     os.system("python {}".format(os.path.join("modules", f"{uninspected_file_name}.{uninspected_file_extension}")))
 
 print(gratient.blue("\n  [>] The code is finished, don't forget to follow @venaxyt / @IDRALOU / @Bleu-No / @vjousse on Github"), end="")
-os.remove(os.path.join("modules", f"{uninspected_file_name}.{uninspected_file_extension}"))
+# os.remove(os.path.join("modules", f"{uninspected_file_name}.{uninspected_file_extension}"))  # It's better to keep it to avoid re-extracting the zip folder
 pause(); clear(); leave()
