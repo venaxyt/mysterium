@@ -1,7 +1,7 @@
 #  ­  ­  ­  ­  ­ **𝙈 ­  ­  ­  ­  ­  ­  ­ 𝙔 ­  ­  ­  ­  ­  ­  ­ 𝙎 ­  ­  ­  ­  ­  ­  ­ 𝙏 ­  ­  ­  ­  ­  ­  ­ 𝙀 ­  ­  ­  ­  ­  ­  ­ 𝙍 ­  ­  ­  ­  ­  ­  ­ 𝙄 ­  ­  ­  ­  ­  ­  ­ 𝙐 ­  ­  ­  ­  ­  ­  ­ 𝙈**
 ![mysterium_logo (1)](https://user-images.githubusercontent.com/81310818/132258721-dc02bb73-772c-4530-a636-4daffbcdc23a.png)
 ```
-Mysterium has been entirely made by @venaxyt, helped by @IDRALOU.
+Mysterium has been entirely made by @venaxyt.
 ```
 ```
 Mysterium usage:
