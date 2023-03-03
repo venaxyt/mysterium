@@ -16,9 +16,9 @@ except:
         if is_windows:
             output = ">nul"
         else:
-            output = "/dev/null"
+            output = "> /dev/null"
 
-        os.system(f"py -m pip install -r requirements.txt {output}")
+        os.system(f"python3 -m pip install -r requirements.txt {output}")
         import gratient, fade
     except:
         exit()
