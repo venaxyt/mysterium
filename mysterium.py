@@ -27,7 +27,7 @@ system = platform.system()
 
 if is_windows:
     # Mysterium top bar title
-    os.system("title 𝙈 𝙔 𝙎 𝙏 𝙀 𝙍 𝙄 𝙐 𝙈")
+    os.system("title 𝙈 𝙔 𝙎 𝙏 𝙀 𝙍 𝙄 𝙐 𝙈 (Github: @venaxyt)")
 
 
 # Definitions
@@ -205,6 +205,6 @@ if blue_mysterium:
 else:
     os.system("python {}".format(os.path.join("modules", f"{uninspected_file_name}.{uninspected_file_extension}")))
 
-print(gratient.blue("\n  [>] The code is finished, don't forget to follow @venaxyt / @IDRALOU / @Bleu-No / @vjousse on Github"), end="")
+print(gratient.blue("\n  [>] The code is finished"), end="")
 # os.remove(os.path.join("modules", f"{uninspected_file_name}.{uninspected_file_extension}"))  # It's better to keep it to avoid re-extracting the zip folder
 pause(); clear(); leave()
