@@ -11,5 +11,6 @@ Mysterium usage:
 ```
 ![mysterium](https://user-images.githubusercontent.com/81310818/132141525-0bfb0f6e-a0d4-4770-8861-97622160baff.PNG)
 > ### **YouTube Tutorial (FR): https://www.youtube.com/watch?v=1idhXNeluCc**<br>
-> ### **You need a tool to get 100% source code from PyArmor encrypted files (not free): https://t.me/s3cteh**<br>
+> ### **I let my Telegram here if you want to buy my PyArmor complete decryption tool: https://t.me/s3cteh**<br>
+### **All I ask is that you don't contact me for nothing, I remind you that the tool is chargeable and that I don't provide anything until we've completed the transaction, too many people have ripped me off or wasted my time, whether it's for screenshots or anything else, so I don't do it again until payment has been made. Thank you for your understanding.**<br>
 > ## **V  ­  ­ E  ­  ­ N  ­  ­ A  ­  ­ X**
